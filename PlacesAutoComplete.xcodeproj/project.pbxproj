@@ -13,8 +13,8 @@
 		FF541625262482B500297767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF541624262482B500297767 /* Assets.xcassets */; };
 		FF541628262482B500297767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF541626262482B500297767 /* LaunchScreen.storyboard */; };
 		FF5416322624838F00297767 /* PlacesAutoCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */; };
-		FF5416352624882A00297767 /* Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5416342624882A00297767 /* Keys.json */; };
 		FF541638262489C200297767 /* CodableStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF541637262489C200297767 /* CodableStructures.swift */; };
+		FF54163B2624920E00297767 /* Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = FF54163A2624920E00297767 /* Keys.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		FF541627262482B500297767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF541629262482B500297767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAutoCompleteVC.swift; sourceTree = "<group>"; };
-		FF5416342624882A00297767 /* Keys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Keys.json; sourceTree = "<group>"; };
 		FF541637262489C200297767 /* CodableStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStructures.swift; sourceTree = "<group>"; };
+		FF54163A2624920E00297767 /* Keys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Keys.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +60,12 @@
 		FF54161A262482B400297767 /* PlacesAutoComplete */ = {
 			isa = PBXGroup;
 			children = (
+				FF54163A2624920E00297767 /* Keys.json */,
 				FF54161B262482B400297767 /* AppDelegate.swift */,
 				FF54161D262482B400297767 /* SceneDelegate.swift */,
 				FF541621262482B400297767 /* Main.storyboard */,
 				FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */,
 				FF541637262489C200297767 /* CodableStructures.swift */,
-				FF5416342624882A00297767 /* Keys.json */,
 				FF541624262482B500297767 /* Assets.xcassets */,
 				FF541626262482B500297767 /* LaunchScreen.storyboard */,
 				FF541629262482B500297767 /* Info.plist */,
@@ -131,7 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF541628262482B500297767 /* LaunchScreen.storyboard in Resources */,
-				FF5416352624882A00297767 /* Keys.json in Resources */,
+				FF54163B2624920E00297767 /* Keys.json in Resources */,
 				FF541625262482B500297767 /* Assets.xcassets in Resources */,
 				FF541623262482B400297767 /* Main.storyboard in Resources */,
 			);
@@ -297,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VGF6Q9433U;
 				INFOPLIST_FILE = PlacesAutoComplete/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VGF6Q9433U;
 				INFOPLIST_FILE = PlacesAutoComplete/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
