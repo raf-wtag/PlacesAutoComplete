@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct SecretKeysMap: Codable {
+    let APIKEY: String
+}
+
