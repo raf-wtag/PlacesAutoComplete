@@ -16,7 +16,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
     var isSearchActive = false
     var mapbox_api = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     var mapbox_access_token = ""
-    var secretKeyContainFile = "Keys.json"
+    var secretKeyContainFile = "Keys"
     
     
     
@@ -27,8 +27,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
         // Parse secret API key from Keys.json
         if let rawAPIKeyData = self.readSecretKeyFromFile(forFileName: secretKeyContainFile) {
             if let retrivedKey = self.parseSecretKeyFile(jsonData: rawAPIKeyData) {
-                self.mapbox_access_token = retrivedKey
-                print(self.mapbox_access_token)
+                mapbox_access_token = retrivedKey
             }
         }
     }
