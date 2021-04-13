@@ -30,10 +30,15 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
                 mapbox_access_token = retrivedKey
             }
         }
+        
+        // Declare this VC as a delegate of UISearchBar
+        searchBar.delegate = self
+        
     }
     
+    
     // MARK: Parse secret API key from Keys.json
-    func readSecretKeyFromFile(forFileName name: String) -> Data? {
+    private func readSecretKeyFromFile(forFileName name: String) -> Data? {
         do {
             if let bundlePath = Bundle.main.path(forResource: name, ofType: "json"), let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
                 return jsonData
@@ -93,7 +98,37 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
     }
     
     @objc func searchPlacesSuggestion() {
+        if let userTypedName = searchBar.text {
+            if(!userTypedName.isEmpty) {
+                self.doShowSuggestion(usersQuery: userTypedName)
+            }
+        } else {
+            print("Error in searchPlacesSuggestion()")
+        }
+    }
+    
+    func doShowSuggestion(usersQuery: String) {
         
+        let urlString = "\(mapbox_api)\(usersQuery).json?access_token=\(mapbox_access_token)"
+        print(urlString)
+        
+        let url = URL(string: urlString)
+        
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            
+            guard let data = data, error == nil else {
+                print("Error in URLSeesion")
+                return
+            }
+            
+            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) {
+                print(jsonData)
+            }
+//            let result = try? JSONDecoder().decode(Feature.self, from: data)
+            
+        }
+        
+        task.resume()
     }
     
 }
