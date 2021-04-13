@@ -89,6 +89,10 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
         isSearchActive = false
         self.searchBar.resignFirstResponder()
         self.searchBar.text = ""
+        suggests = []
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
