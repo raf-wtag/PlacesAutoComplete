@@ -17,6 +17,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
     var mapbox_api = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     var mapbox_access_token = ""
     var secretKeyContainFile = "Keys"
+    var suggestedPlacenames: NSMutableArray = []
     
     
     
@@ -87,6 +88,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.searchPlacesSuggestion), object: nil)
+//        self.suggestedPlacenames = []
         
         self.perform(#selector(self.searchPlacesSuggestion), with:nil, afterDelay: 0.5)
         
@@ -121,11 +123,25 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
                 return
             }
             
-            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) {
-                print(jsonData)
-            }
-//            let result = try? JSONDecoder().decode(Feature.self, from: data)
+//            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) {
+//                print(jsonData)
+//            }
+
+//            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+//                if let rawfeature = jsonObject["features"]  {
+//                    print(type(of: rawfeature))
+//                }
+//            }
             
+            print(self.suggestedPlacenames)
+            
+            
+            if let result = try? JSONDecoder().decode(Response.self, from: data) {
+                self.suggestedPlacenames.add(result)
+                print(self.suggestedPlacenames)
+            } else {
+                print("Failed")
+            }
         }
         
         task.resume()

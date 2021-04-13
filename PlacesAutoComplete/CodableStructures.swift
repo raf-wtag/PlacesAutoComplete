@@ -11,6 +11,10 @@ struct SecretKeysMap: Codable {
     let APIKEY: String
 }
 
+struct Response: Codable {
+    var features: [Feature]
+}
+
 struct Feature: Codable {
     var id: String!
     var type: String?
