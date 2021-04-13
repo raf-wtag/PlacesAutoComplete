@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import CoreLocation
 
-class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
+class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +17,9 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
     var mapbox_access_token = ""
     var secretKeyContainFile = "Keys"
     var suggestedPlacenames: NSMutableArray = []
+    var suggests = [Feature]()
+    var userSelectedPlacesLatitude: Double = 0
+    var userSelectedPlacesLongitude: Double = 0
     
     
     
@@ -35,6 +37,9 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
         // Declare this VC as a delegate of UISearchBar
         searchBar.delegate = self
         
+        // Declare this VC as a delegate of UITableView
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     
@@ -129,22 +134,44 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate {
 
 //            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
 //                if let rawfeature = jsonObject["features"]  {
-//                    print(type(of: rawfeature))
 //                }
 //            }
             
-            print(self.suggestedPlacenames)
-            
-            
             if let result = try? JSONDecoder().decode(Response.self, from: data) {
-                self.suggestedPlacenames.add(result)
-                print(self.suggestedPlacenames)
+                self.suggests = result.features
+                print(self.suggests)
+                print(self.suggests.count)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             } else {
-                print("Failed")
+                print("Failed In Decoding")
             }
         }
-        
         task.resume()
     }
     
+    // MARK: TableView Delegates Function
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return suggests.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 50.0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("In cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "table_cell")
+        cell?.textLabel?.text = suggests[indexPath.row].place_name!
+        print(suggests[indexPath.row].place_name!)
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        userSelectedPlacesLatitude = suggests[indexPath.row].geometry.coordinates[1]
+        userSelectedPlacesLongitude = suggests[indexPath.row].geometry.coordinates[0]
+        print(userSelectedPlacesLatitude, userSelectedPlacesLongitude)
+    }
+
 }
