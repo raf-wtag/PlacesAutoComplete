@@ -15,6 +15,7 @@
 		FF5416322624838F00297767 /* PlacesAutoCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */; };
 		FF541638262489C200297767 /* CodableStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF541637262489C200297767 /* CodableStructures.swift */; };
 		FF54163B2624920E00297767 /* Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = FF54163A2624920E00297767 /* Keys.json */; };
+		FF555748262B6528006FA128 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF555747262B6528006FA128 /* HomeViewController.swift */; };
 		FF77512E26269DFD00740D62 /* AutoCompleteLocationCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF77512D26269DFD00740D62 /* AutoCompleteLocationCustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAutoCompleteVC.swift; sourceTree = "<group>"; };
 		FF541637262489C200297767 /* CodableStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStructures.swift; sourceTree = "<group>"; };
 		FF54163A2624920E00297767 /* Keys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Keys.json; sourceTree = "<group>"; };
+		FF555747262B6528006FA128 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF77512D26269DFD00740D62 /* AutoCompleteLocationCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteLocationCustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				FF54161B262482B400297767 /* AppDelegate.swift */,
 				FF54161D262482B400297767 /* SceneDelegate.swift */,
 				FF541621262482B400297767 /* Main.storyboard */,
+				FF555747262B6528006FA128 /* HomeViewController.swift */,
 				FF77512D26269DFD00740D62 /* AutoCompleteLocationCustomTableViewCell.swift */,
 				FF5416312624838F00297767 /* PlacesAutoCompleteVC.swift */,
 				FF541637262489C200297767 /* CodableStructures.swift */,
@@ -152,6 +155,7 @@
 				FF77512E26269DFD00740D62 /* AutoCompleteLocationCustomTableViewCell.swift in Sources */,
 				FF54161E262482B400297767 /* SceneDelegate.swift in Sources */,
 				FF5416322624838F00297767 /* PlacesAutoCompleteVC.swift in Sources */,
+				FF555748262B6528006FA128 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
