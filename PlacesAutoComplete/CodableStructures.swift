@@ -8,7 +8,7 @@
 import Foundation
 
 struct SecretKeysMap: Codable {
-    let APIKEY: String
+    let APIKEY_MAPBOX: String
 }
 
 struct Response: Codable {

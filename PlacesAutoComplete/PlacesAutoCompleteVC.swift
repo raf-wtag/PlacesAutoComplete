@@ -16,8 +16,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     var mapbox_api = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     var mapbox_access_token = ""
     var secretKeyContainFile = "Keys"
-    var suggestedPlacenames: NSMutableArray = []
-    var suggests = [Feature]()
+    var suggestedPlacenames = [Feature]()
     var userSelectedPlacesLatitude: Double = 0
     var userSelectedPlacesLongitude: Double = 0
     
@@ -58,8 +57,8 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     private func parseSecretKeyFile(jsonData: Data) -> String? {
         do {
             let decodedSecretKeys = try JSONDecoder().decode(SecretKeysMap.self, from: jsonData)
-            print("API key is", decodedSecretKeys.APIKEY)
-            return decodedSecretKeys.APIKEY
+            print("API key is", decodedSecretKeys.APIKEY_MAPBOX)
+            return decodedSecretKeys.APIKEY_MAPBOX
         } catch {
             print("Hey!! Error in Decoding!!")
         }
@@ -89,7 +88,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
         isSearchActive = false
         self.searchBar.resignFirstResponder()
         self.searchBar.text = ""
-        suggests = []
+        suggestedPlacenames = []
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -142,9 +141,9 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
 //            }
             
             if let result = try? JSONDecoder().decode(Response.self, from: data) {
-                self.suggests = result.features
-                print(self.suggests)
-                print(self.suggests.count)
+                self.suggestedPlacenames = result.features
+                print(self.suggestedPlacenames)
+                print(self.suggestedPlacenames.count)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -157,7 +156,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     
     // MARK: TableView Delegates Function
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return suggests.count
+        return suggestedPlacenames.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -166,15 +165,18 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("In cell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "table_cell")
-        cell?.textLabel?.text = suggests[indexPath.row].place_name!
-        print(suggests[indexPath.row].place_name!)
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "table_cell") as! AutoCompleteLocationCustomTableViewCell
+//        cell?.textLabel?.text = suggests[indexPath.row].place_name!
+//        print(suggests[indexPath.row].place_name!)
+        cell.suggestedPlaceName.text = suggestedPlacenames[indexPath.row].place_name!
+        cell.placeMarker.image = UIImage(named: "mapMarker")
+        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        userSelectedPlacesLatitude = suggests[indexPath.row].geometry.coordinates[1]
-        userSelectedPlacesLongitude = suggests[indexPath.row].geometry.coordinates[0]
+        userSelectedPlacesLatitude = suggestedPlacenames[indexPath.row].geometry.coordinates[1]
+        userSelectedPlacesLongitude = suggestedPlacenames[indexPath.row].geometry.coordinates[0]
         print(userSelectedPlacesLatitude, userSelectedPlacesLongitude)
     }
 
