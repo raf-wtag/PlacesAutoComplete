@@ -19,6 +19,7 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     var suggestedPlacenames = [Feature]()
     var userSelectedPlacesLatitude: Double = 0
     var userSelectedPlacesLongitude: Double = 0
+    var userSelectedPlacesName: String = ""
     
     
     
@@ -177,7 +178,9 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userSelectedPlacesLatitude = suggestedPlacenames[indexPath.row].geometry.coordinates[1]
         userSelectedPlacesLongitude = suggestedPlacenames[indexPath.row].geometry.coordinates[0]
+        userSelectedPlacesName = suggestedPlacenames[indexPath.row].place_name!
         print(userSelectedPlacesLatitude, userSelectedPlacesLongitude)
+        performSegue(withIdentifier: "unwind", sender: self)
     }
 
 }
