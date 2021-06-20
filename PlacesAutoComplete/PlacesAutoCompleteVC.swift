@@ -40,6 +40,8 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
         // Declare this VC as a delegate of UITableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
     }
     
     
@@ -109,8 +111,10 @@ class PlacesAutoCompleteVC: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     @objc func searchPlacesSuggestion() {
-        if let userTypedName = searchBar.text {
+        if var userTypedName = searchBar.text {
             if(!userTypedName.isEmpty) {
+                userTypedName = userTypedName.trimmingCharacters(in: .whitespaces)
+                userTypedName = userTypedName.replacingOccurrences(of: " ", with: "_")
                 self.doShowSuggestion(usersQuery: userTypedName)
             }
         } else {
